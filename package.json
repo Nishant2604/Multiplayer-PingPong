@@ -1,0 +1,26 @@
+{
+  "name": "multiplayer_pingpong",
+  "version": "1.0.0",
+  "description": "multiplayer ping pong game using socket.io, node.js and html5 canvas",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Socket.io",
+    "node.js",
+    "html5",
+    "canvas",
+    "JS",
+    "game",
+    "multiplayer",
+    "pingpong",
+    "dash"
+  ],
+  "author": "Nishant Nischaya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
+  }
+}
