@@ -1,8 +1,6 @@
 var canvas = document.querySelector('canvas');
 var context = canvas.getContext('2d');
 
-adjust_size();
-
 $(window).resize(() =>{
     adjust_size();
 });
@@ -14,6 +12,7 @@ function adjust_size() {
 }
 
 function refresh(x){  
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     var dimensions = {
         width: canvas.width,
         height: canvas.height,
@@ -27,8 +26,8 @@ function refresh(x){
 var x = 0;
 
 function animate() {
+    adjust_size();
     requestAnimationFrame(animate);
-    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         if(keyName == 'ArrowRight'){
