@@ -19,11 +19,16 @@ function refresh(x){
         wsize: canvas.width * 0.1,
         hsize: canvas.height * 0.01
     }
-    context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
-    context.fill();
+    console.log((dimensions.width / 2 + x) + " " + canvas.width);
+    
+    if ((dimensions.width / 2) + x < canvas.width){
+        context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
+        context.fill();
+    }
 }
 
 var x = 0;
+var speed = 0.07;
 
 function animate() {
     adjust_size();
@@ -31,9 +36,9 @@ function animate() {
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         if(keyName == 'ArrowRight'){
-            x++;
+            x += speed;
         } else if (keyName == 'ArrowLeft'){
-            x--;
+            x -= speed;
         }
     });
     refresh(x);
