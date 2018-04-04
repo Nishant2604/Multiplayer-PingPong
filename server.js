@@ -4,10 +4,18 @@ const SocketIO = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const socket = SocketIO(server);
+const io = SocketIO(server);
 
 app.use('/', express.static(__dirname + '/public'));
 
-server.listen(3344, () => {
-    console.log("server started at http://localhost:3344");
+io.on('connection', (socket) => {
+    console.log(socket.id);
+    
+    socket.on('p1', (data) => {
+        io.emit('p2', { x: data.x })
+    })
+})
+
+server.listen(3333, () => {
+    console.log("server started at http://localhost:3333");
 })
