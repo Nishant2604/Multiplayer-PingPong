@@ -19,12 +19,10 @@ function refresh(x){
         wsize: canvas.width * 0.1,
         hsize: canvas.height * 0.01
     }
-    console.log((dimensions.width / 2 + x) + " " + canvas.width);
-    
-    if ((dimensions.width / 2) + x < canvas.width){
-        context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
-        context.fill();
-    }
+
+ 
+    context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
+    context.fill();
 }
 
 var x = 0;
@@ -35,9 +33,9 @@ function animate() {
     requestAnimationFrame(animate);
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
-        if(keyName == 'ArrowRight'){
+        if(keyName == 'ArrowRight' && x < canvas.width / 2){
             x += speed;
-        } else if (keyName == 'ArrowLeft'){
+        } else if (keyName == 'ArrowLeft' && x > - canvas.width / 2){
             x -= speed;
         }
     });
