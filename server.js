@@ -12,6 +12,8 @@ io.on('connection', (socket) => {
     console.log(socket.id);
     
     socket.on('p1', (data) => {
+        console.log(data.x);
+        
         io.emit('p2', { x: data.x })
     })
 })

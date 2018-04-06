@@ -37,19 +37,22 @@ function animate() {
     adjust_size();
     requestAnimationFrame(animate);
     socket.on('p2',(data) => {
+        console.log(data);
+        
         var y = data.x * canvas.width;
     })
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         if(keyName == 'ArrowRight' && x < canvas.width / 2){
             x += speed;
-            y += speed;
         } else if (keyName == 'ArrowLeft' && x > - canvas.width / 2){
             x -= speed;
-            y -= speed;
         }
     });
+    
     socket.emit('p1', {x : x / canvas.width});
+    // console.log(x + " " + y);
+    
     refresh(x, y);
 }
 
