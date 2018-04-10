@@ -12,6 +12,13 @@ var yball = 0;
 var speedball = 4;
 var radius = 5;
 
+var playerType = false;
+
+socket.on('playerAssignment', (data) => {
+    playerType = data.player1;
+})
+
+
 $(window).resize(() =>{
     adjust_size();
 });
@@ -46,7 +53,6 @@ function animate() {
     adjust_size();
     requestAnimationFrame(animate);
     socket.on('p2',(data) => {
-        console.log(data);
         y = data.x * canvas.width;
     })
     document.addEventListener('keydown', (event) => {

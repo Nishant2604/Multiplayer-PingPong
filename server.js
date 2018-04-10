@@ -8,15 +8,19 @@ const io = SocketIO(server);
 
 app.use('/', express.static(__dirname + '/public'));
 
+var player1 = false;
+
 io.on('connection', (socket) => {
-    console.log(socket.id);
+
+    player1 = !player1;
+    
+    socket.emit('playerAssignment', { player1 : player1 })
     
     socket.on('p1', (data) => {
-        console.log(data.x);
         socket.broadcast.emit('p2', { x: data.x })
     })
 })
 
-server.listen(3333, () => {
-    console.log("server started at http://localhost:3333");
+server.listen(4444, () => {
+    console.log("server started at http://localhost:4444");
 })
