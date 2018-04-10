@@ -6,6 +6,10 @@ var context = canvas.getContext('2d');
 var x = 0;
 var y = 0;
 var speed = 0.07;
+
+var xball = 0;
+var yball = 0;
+var speedball = 10;
 var radius = 5;
 
 $(window).resize(() =>{
@@ -30,11 +34,11 @@ function refresh(x, y){
         hsize: canvas.height * 0.01
     }
     context.beginPath();
-    context.arc(dimensions.width / 2, dimensions.height / 2, radius, 0, 2 * Math.PI);
+    context.arc(dimensions.width / 2 + xball, dimensions.height / 2 + yball, radius, 0, 2 * Math.PI);
     context.stroke();
+
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + y, dimensions.hsize, dimensions.wsize, dimensions.hsize);
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
-    
     context.fill();
 }
 
@@ -55,8 +59,11 @@ function animate() {
     });
     
     socket.emit('p1', {x : x / canvas.width});
+
+    xball += speedball;
+    yball += speedball;
     
-    refresh(x, y);
+    refresh(x, y, xball, yball);
 }
 
 animate();
