@@ -16,6 +16,9 @@ var playerType = false;
 
 socket.on('playerAssignment', (data) => {
     playerType = data.player1;
+    if(!playerType){
+        speedball = - speedball;
+    }
 })
 
 
@@ -53,7 +56,7 @@ function animate() {
     adjust_size();
     requestAnimationFrame(animate);
     socket.on('p2',(data) => {
-        y = data.x * canvas.width;
+        y = - data.x * canvas.width;
     })
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
