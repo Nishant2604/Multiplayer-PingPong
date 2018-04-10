@@ -38,8 +38,7 @@ function animate() {
     requestAnimationFrame(animate);
     socket.on('p2',(data) => {
         console.log(data);
-        
-        var y = data.x * canvas.width;
+        y = data.x * canvas.width;
     })
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;

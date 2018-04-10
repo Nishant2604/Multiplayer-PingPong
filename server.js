@@ -13,8 +13,7 @@ io.on('connection', (socket) => {
     
     socket.on('p1', (data) => {
         console.log(data.x);
-        
-        io.emit('p2', { x: data.x })
+        socket.broadcast.emit('p2', { x: data.x })
     })
 })
 
