@@ -8,9 +8,12 @@ $(window).resize(() =>{
 });
 
 function adjust_size() {  
+    var oldwidth = canvas.width;
     canvas.width = window.innerWidth - 5;
     canvas.height = window.innerHeight - 5;
-    refresh();
+    var scaling_factor = canvas.width / oldwidth;
+    x = x * scaling_factor;
+    refresh(x, y);
 }
 
 function refresh(x, y){  
@@ -23,9 +26,8 @@ function refresh(x, y){
     }
 
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + y, dimensions.hsize, dimensions.wsize, dimensions.hsize);
-    context.fill();
- 
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
+    
     context.fill();
 }
 
