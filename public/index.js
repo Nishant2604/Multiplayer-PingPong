@@ -3,6 +3,11 @@ socket = io()
 var canvas = document.querySelector('canvas');
 var context = canvas.getContext('2d');
 
+var x = 0;
+var y = 0;
+var speed = 0.07;
+var radius = 5;
+
 $(window).resize(() =>{
     adjust_size();
 });
@@ -24,16 +29,14 @@ function refresh(x, y){
         wsize: canvas.width * 0.1,
         hsize: canvas.height * 0.01
     }
-
+    context.beginPath();
+    context.arc(dimensions.width / 2, dimensions.height / 2, radius, 0, 2 * Math.PI);
+    context.stroke();
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + y, dimensions.hsize, dimensions.wsize, dimensions.hsize);
     context.rect((dimensions.width / 2) - dimensions.wsize / 2 + x, dimensions.height - dimensions.hsize, dimensions.wsize, dimensions.hsize);
     
     context.fill();
 }
-
-var x = 0;
-var y = 0;
-var speed = 0.07;
 
 function animate() {
     adjust_size();
@@ -52,7 +55,6 @@ function animate() {
     });
     
     socket.emit('p1', {x : x / canvas.width});
-    // console.log(x + " " + y);
     
     refresh(x, y);
 }
