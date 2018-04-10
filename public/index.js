@@ -9,7 +9,7 @@ var speed = 0.07;
 
 var xball = 0;
 var yball = 0;
-var speedball = 10;
+var speedball = 4;
 var radius = 5;
 
 $(window).resize(() =>{
